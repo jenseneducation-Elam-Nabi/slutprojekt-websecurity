@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const myModels = require("../../models/myproducts");
 
+
 router.get("/", async (req, res) => {
     const post = await myModels.all();
     res.json(post);
