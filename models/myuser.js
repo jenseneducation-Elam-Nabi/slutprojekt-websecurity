@@ -1,6 +1,11 @@
 const DataStore = require("nedb-promise");
 const users = new DataStore({ filename: "./db/users.db", autoload: true })
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+
+const secret = process.env.MYPASS;
+const token = jwt.sign(payload, secret);
 
 module.exports = {
     async newRegister(body) {
@@ -13,6 +18,7 @@ module.exports = {
                 const myNewUser = {
                     email: body.email,
                     password: passwordHash,
+                    role: "costumer",
                     name: body.name,
                     adress: {
                         street: body.adress.street,
