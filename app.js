@@ -10,6 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/users", userRoutes);
+app.use("/", userRoutes);
 
 app.listen(8080, () => console.log("Server started"));

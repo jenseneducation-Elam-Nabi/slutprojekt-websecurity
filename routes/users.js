@@ -6,20 +6,13 @@ const myUser = require("../models/myuser");
 const secret = process.env.MYPASS;
 // const token = jwt.sign(secret);
 
-router.post("/register", async (req, res) => {
-    const newUser = {
-        email: req.body.email,
-        password: req.body.password,
-        name: req.body.name,
-        adress: {
-            street: req.body.adress.street,
-            zip: req.body.adress.zip,
-            city: req.body.adress.city
-        }
+router.post("/api/register", async (req, res) => {
+    const user = await myUser.newRegister(req.body)
+    if (user) {
+        res.json(user)
+    } else {
+        res.send('Something went wrong...')
     }
-
-    const users = await myUser.newRegister(newUser)
-    res.send(users);
 });
 
 module.exports = router;
