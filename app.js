@@ -2,6 +2,8 @@ const express = require('express')
 const productRoutes = require("./routes/resources/products");
 const orderRoutes = require("./routes/resources/orders");
 
+
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
