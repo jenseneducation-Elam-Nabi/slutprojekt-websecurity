@@ -1,10 +1,6 @@
 const DataStore = require("nedb-promise");
+const users = new DataStore({ filename: "./db/users.db", autoload: true })
 const bcrypt = require("bcryptjs");
-
-const users = new DataStore({
-    filename: "./db/users.db",
-    autoload: true
-});
 
 module.exports = {
     async newRegister(body) {
