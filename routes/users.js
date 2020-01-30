@@ -8,7 +8,16 @@ router.post("/api/register", async (req, res) => {
     if (user) {
         res.json(user)
     } else {
-        res.send('Something went wrong...')
+        res.send('Something went wrong...');
+    }
+});
+
+router.post("/api/auth", async (req, res) => {
+    const userAuth = await myUser.userLogin(req.body)
+    if (userAuth) {
+        res.json(userAuth)
+    } else {
+        res.send("You are not authorized");
     }
 });
 

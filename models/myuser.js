@@ -37,7 +37,7 @@ module.exports = {
         if (email) {
             const passwordMatch = await bcrypt.compare(body.password, password);
             if (passwordMatch) {
-                const token = jwt.sign({ password }, process.env.MYPASS);
+                const token = jwt.sign({ password }, process.env.MY_TOKEN);
                 res.json({ token });
             }
         } else {
