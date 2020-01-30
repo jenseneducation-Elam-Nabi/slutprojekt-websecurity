@@ -32,16 +32,21 @@ module.exports = {
     },
 
     async userLogin(body) {
-        const email = await users.findOne({ email: body.email });
-        const password = await users.findOne({ password: body.password });
-        if (email) {
-            const passwordMatch = await bcrypt.compare(body.password, password);
-            if (passwordMatch) {
-                const token = jwt.sign({ password }, process.env.MYPASS);
-                res.json({ token });
-            }
+        const user = await users.findOne({});
+        if (body.email !== user.email) {
+            return false
         } else {
-            res.status(403).send("Not authorized")
+            const passwordMatch = await bcrypt.compare(body.password, user.password)
+            if (passwordMatch) {
+                const payload = {
+                    email: user.email,
+                    password: user.password
+                }
+                const secret = process.env.MYPASS
+                return jwt.sign(payload, secret)
+            } else {
+                return false
+            }
         }
     }
 };
