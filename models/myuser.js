@@ -4,8 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
-const secret = process.env.MYPASS;
-const token = jwt.sign(payload, secret);
 
 module.exports = {
     async newRegister(body) {
@@ -31,5 +29,20 @@ module.exports = {
         } else {
             return false;
         }
+    },
+
+    async userLogin(body) {
+        const email = await users.findOne({ email: body.email });
+        const password = await users.findOne({ password: body.password });
+        if (email) {
+            const passwordMatch = await bcrypt.compare(body.password, password);
+            if (passwordMatch) {
+                const token = jwt.sign({ password }, process.env.MYPASS);
+                res.json({ token });
+            }
+        } else {
+            res.status(403).send("Not authorized")
+        }
     }
 };
+
