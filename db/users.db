@@ -1,2 +1,3 @@
-{"email":"a@g.com","password":"$2a$10$PDecgdI78.GTJwO3fdPT6u53tQnvUvmU/yinjA0rFomPD7gMIVTDm","role":"costumer","name":"a","adress":{"street":"a","zip":"a","city":"a"},"_id":"VGZO63tVs9clQdvi"}
-{"email":"asdasd@nabi.nu","password":"$2a$10$gnBRQHhGi32EFWsFt3YPeedIt36HJS9Q.MU5YY2kmt3boYg8KEvay","role":"costumer","name":"easdasd","adress":{"street":"aasdffd","zip":"1234234","city":"adadads"},"_id":"sTWPWQEk227By2Sb"}
+{"email":"admin@gmail.com","password":"$2a$10$.iBbywIpTxoM5xuOr.lK6.lR.sbZCLlByaks/DvtQvKcz4vYlasqO","role":"admin","name":"admin","adress":{"street":"kantatvägen 12","zip":"123 45","city":"Nacka"},"_id":"1d3vtEef1oT8IlMU"}
+{"email":"elam@gmail.com","password":"$2a$10$4hEuwa51Q/Puvj4RvsINV.1CtKpeVJr87si.FkM6wxlaowTRkvujW","role":"costumer","name":"elam","adress":{"street":"tossavägen 11","zip":"123 45","city":"Solna"},"_id":"7xSjVpfleGhOll0c"}
+{"email":"olof@gmail.com","password":"$2a$10$ZpvPKuNh3exfiCP6G0hGS.rDw7ps9d5gR6dohMrQRWUonYxy4alHS","role":"customer","name":"Olof Karlsson","adress":{"street":"strängvägen 132","zip":"123 45","city":"Solna"},"_id":"WFiFuKfSLYrVRX20"}
