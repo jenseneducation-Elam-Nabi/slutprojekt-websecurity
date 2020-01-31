@@ -42,4 +42,8 @@ async function update(id, body) {
     return await db.update({ _id: id }, body);
 };
 
+async function remove(id) {
+    return await products.remove({ _id: id })
+}
+
 module.exports = { all, getOne, create, update, remove };
