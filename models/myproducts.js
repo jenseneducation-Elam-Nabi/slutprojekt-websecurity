@@ -1,6 +1,6 @@
 const DataStore = require("nedb-promise");
 
-const db = new DataStore({
+const products = new DataStore({
     filename: "./db/products.db",
     autoload: true
 });
@@ -10,18 +10,25 @@ const db = new DataStore({
 
 // GET ALL
 async function all() {
-    return await db.find({});
+    return await products.find({});
 };
 
+async function getOne(id) {
+    return await products.findOne({ _id: id })
+}
+
 //Create POST
-async function create(db) {
-    return await db.insert({
+async function create(body) {
+    const newProduct = {
+        _id: body.id,
+        serial: body.serial,
         title: body.title,
         price: body.price,
         shortDesc: body.shortDesc,
         longDesc: body.longDesc,
         imgFile: body.imgFile
-    });
+    }
+    return await products.insert(newProduct)
 };
 
 // Delete POST 
@@ -30,8 +37,8 @@ async function remove(id) {
 };
 
 //Patch(UPDATE POST)
-async function update(id, content) {
-    return await db.update({ _id: id }, content);
+async function update(id, body) {
+    return await db.update({ _id: id }, body);
 };
 
-module.exports = { all, create, update, remove };
+module.exports = { all, getOne, create, update, remove };
