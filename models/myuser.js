@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
-
 module.exports = {
     async newRegister(body) {
         if (body.password === body.repeatPassword) {

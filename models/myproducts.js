@@ -5,6 +5,9 @@ const db = new DataStore({
     autoload: true
 });
 
+// const productsObject = require('../products.json')
+// db.insert(productsObject)
+
 // GET ALL
 async function all() {
     return await db.find({});
@@ -13,11 +16,11 @@ async function all() {
 //Create POST
 async function create(db) {
     return await db.insert({
-        title: 'Gretas Fury',
-        price: 999,
-        shortDesc: 'Unisex',
-        longDesc: 'Skate ipsum dolor sit amet...',
-        imgFile: 'skateboard-greta.png'
+        title: body.title,
+        price: body.price,
+        shortDesc: body.shortDesc,
+        longDesc: body.longDesc,
+        imgFile: body.imgFile
     });
 };
 
@@ -28,7 +31,7 @@ async function remove(id) {
 
 //Patch(UPDATE POST)
 async function update(id, content) {
-    return await db.update({ _id: id });
+    return await db.update({ _id: id }, content);
 };
 
 module.exports = { all, create, update, remove };
