@@ -8,19 +8,19 @@ router.get("/api/products", async (req, res) => {
     res.json(post);
 });
 
-router.get('/api/products/:id', async (req, res) => {
+router.get("/api/products/:id", async (req, res) => {
     const post = await Product.create(req.params.id);
     if (!post) {
-        res.json({ message: "Couldn't find post" })
+        res.json({ message: "Couldn't find post" });
     } else {
         res.json(post);
     }
-})
+});
 
 router.post("/api/products/", async (req, res) => {
     const post = await Product.create(req.body);
     if (!post) {
-        res.json({ message: "Couldn't create post" })
+        res.json({ message: "Couldn't create post" });
     } else {
         res.json(post);
     }

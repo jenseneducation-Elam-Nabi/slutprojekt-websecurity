@@ -13,9 +13,10 @@ async function all() {
     return await products.find({});
 };
 
+//GET ONE "PRODUCT"
 async function getOne(id) {
-    return await products.findOne({ _id: id })
-}
+    return await products.findOne({ _id: id });
+};
 
 //Create POST
 async function create(body) {
@@ -28,7 +29,7 @@ async function create(body) {
         longDesc: body.longDesc,
         imgFile: body.imgFile
     }
-    return await products.insert(newProduct)
+    return await products.insert(newProduct);
 };
 
 // Delete POST 
