@@ -46,4 +46,10 @@ async function remove(id) {
     return await products.remove({ _id: id })
 }
 
+async function update(id, body) {
+    let product = await products.findOne({ _id: id })
+    product = await products.update(product, { $set: body })
+    return product
+}
+
 module.exports = { all, getOne, create, update, remove };

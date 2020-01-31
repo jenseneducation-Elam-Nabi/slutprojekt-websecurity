@@ -26,9 +26,13 @@ router.post("/api/products/", async (req, res) => {
     }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/api/products/:id", async (req, res) => {
     let post = await Product.update(req.params.id, req.body);
-    res.json(post);
+    if (!post) {
+        res.json({ message: "Couldn't update post" });
+    } else {
+        res.json(post);
+    }
 });
 
 router.delete("/api/products/:id", async (req, res) => {
@@ -36,7 +40,6 @@ router.delete("/api/products/:id", async (req, res) => {
     if (!post) {
         res.json({ message: 'Product removed' })
     } else {
-
         res.json(post);
     }
 });
