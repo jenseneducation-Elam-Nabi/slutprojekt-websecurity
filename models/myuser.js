@@ -3,6 +3,7 @@ const users = new DataStore({ filename: "./db/users.db", autoload: true })
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require('dotenv').config()
+const mysecret = process.env.MYPASS;
 
 
 module.exports = {
@@ -32,20 +33,14 @@ module.exports = {
     },
 
     async userLogin(body) {
-        const user = await users.findOne({});
-        if (user.email !== body.email) {
+        const user = await users.findOne({ email: body.email });
+        if (!user) {
             return false
         } else {
             const passwordMatch = await bcrypt.compare(body.password, user.password)
             if (passwordMatch) {
-                const mysecret = process.env.MYPASS;
                 const payload = {
-                    email: user.email,
-                    role: user.role
-                };
-                const token = jwt.sign(payload, mysecret);
-                const authRes = {
-                    token: token,
+                    token: "token",
                     user: {
                         email: user.email,
                         name: user.name,
@@ -57,7 +52,8 @@ module.exports = {
                         }
                     }
                 };
-                return authRes;
+                const token = jwt.sign(payload, mysecret);
+                return token
             } else {
                 return false;
             }
