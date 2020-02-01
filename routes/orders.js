@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const myModels = require("../models/myorders");
+const Order = require("../models/myorders");
 
-router.get("/", async (req, res) => {
-    const post = await myModels.all();
-    res.json(post);
+router.get("/api/orders", async (req, res) => {
+    const posts = await Order.all();
+    res.json(posts);
 });
 
 router.post("/", async (req, res) => {
-    const post = await myModels.create(req.body.content);
+    const post = await Order.create(req.body.content);
     res.json(post);
 });
 

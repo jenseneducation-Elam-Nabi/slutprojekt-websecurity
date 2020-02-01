@@ -1,28 +1,21 @@
 const DataStore = require("nedb-promise");
 
-const db = new DataStore({
+const order = new DataStore({
     filename: "./db/orders.db",
     autoload: true
 });
 
 // GET ALL
 async function all() {
-    return await db.find({});
+    return await order.find({ role: "admin" }, (err, doc) => {
+        if (err) return false
+        console.log(doc)
+    });
 };
 
 //Create POST
 async function create(content) {
-    return await db.insert({ content });
+    return await order.insert({ content });
 };
 
-// Delete POST 
-async function remove(id) {
-    return await db.remove({ _id: id });
-};
-
-//Patch(UPDATE POST)
-async function update(id, content) {
-    return await db.update({ _id: id });
-};
-
-module.exports = { all, create, update, remove };
+module.exports = { all, create };

@@ -34,7 +34,7 @@ async function create(body) {
 
 // Delete POST 
 async function remove(id) {
-    return await db.remove({ _id: id });
+    return await products.remove({ _id: id });
 };
 
 //Patch(UPDATE POST)
@@ -42,14 +42,10 @@ async function update(id, body) {
     return await db.update({ _id: id }, body);
 };
 
-async function remove(id) {
-    return await products.remove({ _id: id })
-}
-
 async function update(id, body) {
     let product = await products.findOne({ _id: id })
-    product = await products.update(product, { $set: body })
-    return product
-}
+    product = await products.update(product, { $set: body });
+    return product;
+};
 
 module.exports = { all, getOne, create, update, remove };

@@ -38,8 +38,14 @@ module.exports = {
         } else {
             const passwordMatch = await bcrypt.compare(body.password, user.password)
             if (passwordMatch) {
+                const mysecret = process.env.MYPASS;
                 const payload = {
-                    token: "JWT_TOKEN",
+                    email: user.email,
+                    role: user.role
+                };
+                const token = jwt.sign(payload, mysecret);
+                const authRes = {
+                    token: token,
                     user: {
                         email: user.email,
                         name: user.name,
@@ -50,11 +56,10 @@ module.exports = {
                             zip: user.adress.zip
                         }
                     }
-                }
-                const secret = process.env.MYPASS
-                return jwt.sign(payload, secret)
+                };
+                return authRes;
             } else {
-                return false
+                return false;
             }
         }
     }

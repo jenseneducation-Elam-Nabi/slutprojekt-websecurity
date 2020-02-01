@@ -38,7 +38,7 @@ router.patch("/api/products/:id", async (req, res) => {
 router.delete("/api/products/:id", async (req, res) => {
     const post = await Product.remove(req.params.id);
     if (!post) {
-        res.json({ message: 'Product removed' })
+        res.json({ message: "Product removed" });
     } else {
         res.json(post);
     }

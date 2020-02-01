@@ -3,6 +3,10 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const myUser = require("../models/myuser");
 
+require('dotenv').config()
+
+const secret = process.env.MYPASS
+
 
 router.post("/api/register", async (req, res) => {
     const user = await myUser.newRegister(req.body)
@@ -15,10 +19,10 @@ router.post("/api/register", async (req, res) => {
 
 router.post("/api/auth", async (req, res) => {
     const userAuth = await myUser.userLogin(req.body)
-    const secret = process.env.MYPASS
-    if (userAuth) {
-        const verify = jwt.verify(userAuth, secret)
-        res.json(verify)
+    const verify = jwt.verify(userAuth.token, process.env.MYPASS);
+    if (verify) {
+        res.json(verify);
+        console.log(verify);
     } else {
         res.send("You are not authorized");
     }
