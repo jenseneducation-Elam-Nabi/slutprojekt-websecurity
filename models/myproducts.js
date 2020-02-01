@@ -5,8 +5,8 @@ const products = new DataStore({
     autoload: true
 });
 
-// const productsObject = require('../products.json')
-// db.insert(productsObject)
+const productsObject = require('../products.json')
+products.insert(productsObject)
 
 // GET ALL
 async function all() {
