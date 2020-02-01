@@ -3,11 +3,11 @@ const router = express.Router();
 const Order = require("../models/myorders");
 
 router.get("/api/orders", async (req, res) => {
-    const myOrder = await Order.all();
+    const myOrder = await Order.getMyOrders();
     res.json(myOrder);
 });
 
-router.post("/", async (req, res) => {
+router.post("/api/orders", async (req, res) => {
     const myOrder = await Order.create(req.body);
     if (!myOrder) {
         res.json({ message: "Order not found" });

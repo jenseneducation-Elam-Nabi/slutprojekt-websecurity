@@ -17,7 +17,7 @@ module.exports = {
             items: body.items,
             orderValue: body.orderValue
         };
-        return await order.insert({ newOrder });
+        return await orders.insert(newOrder);
     }
 };
 
