@@ -4,20 +4,20 @@ const Product = require("../models/myproducts");
 
 
 router.get("/api/products", async (req, res) => {
-    const post = await Product.all();
-    res.json(post);
+    const product = await Product.all();
+    res.json(product);
 });
 
 router.get("/api/products/:id", async (req, res) => {
-    const post = await Product.create(req.params.id);
-    if (!post) {
-        res.json({ message: "Couldn't find post" });
+    const product = await Product.create(req.params.id);
+    if (product) {
+        res.json(product);
     } else {
-        res.json(post);
+        res.json({ message: "Couldn't find post" });
     }
 });
 
-router.post("/api/products/", async (req, res) => {
+router.post("/api/products", async (req, res) => {
     const post = await Product.create(req.body);
     if (!post) {
         res.json({ message: "Couldn't create post" });
