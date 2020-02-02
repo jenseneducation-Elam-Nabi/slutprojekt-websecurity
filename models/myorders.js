@@ -6,10 +6,15 @@ const orders = new DataStore({
 });
 
 module.exports = {
+
+    // find all orders in db.
     async getMyOrders() {
         return await orders.find({});
     },
+
+    // create new order 
     async create(body) {
+        // new order object
         const newOrder = {
             _id: body.id,
             timeStamp: Date.now(),
@@ -17,6 +22,8 @@ module.exports = {
             items: body.items,
             orderValue: body.orderValue
         };
+
+        // insert new order in db.
         return await orders.insert(newOrder);
     }
 };

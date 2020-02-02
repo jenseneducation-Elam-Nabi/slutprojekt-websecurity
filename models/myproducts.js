@@ -5,10 +5,14 @@ const products = new DataStore({
     autoload: true
 });
 
-const productsObject = require('../products.json')
-products.insert(productsObject)
+// import product file for inserting to db products.db.
 
-// GET ALL
+// const productsObject = require('../products.json')
+// products.insert(productsObject)
+
+// GET ALL PRODUCTS
+
+// create async function to find all products in db.
 async function all() {
     return await products.find({});
 };
@@ -18,8 +22,10 @@ async function getOne(id) {
     return await products.findOne({ _id: id });
 };
 
-//Create POST
+//Create PRODUCT
+// function takes 1 parameter, "body"
 async function create(body) {
+    // create new object where all keys get value from product form.
     const newProduct = {
         _id: body.id,
         serial: body.serial,
@@ -29,23 +35,21 @@ async function create(body) {
         longDesc: body.longDesc,
         imgFile: body.imgFile
     }
+    // insert object into db.
     return await products.insert(newProduct);
 };
 
-// Delete POST 
+// Delete PRODUCT 
 async function remove(id) {
     return await products.remove({ _id: id });
 };
 
-//Patch(UPDATE POST)
-async function update(id, body) {
-    return await db.update({ _id: id }, body);
-};
-
+//Patch(UPDATE PRODUCT)
 async function update(id, body) {
     let product = await products.findOne({ _id: id })
     product = await products.update(product, { $set: body });
     return product;
 };
 
+// export every function through module.exports so it can be used elsewhere e.g in the routes folder.
 module.exports = { all, getOne, create, update, remove };
