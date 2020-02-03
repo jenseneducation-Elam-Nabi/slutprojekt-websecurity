@@ -34,20 +34,11 @@ router.post("/api/orders", async (req, res) => {
     } else {
         try {
             const myPayload = jwt.verify(req.headers.authorization.replace("Bearer ", ""), process.env.MYPASS)
-            if (myPayload.role == "admin") {
-                const getAllOrders = await Order.getMyOrders();
-                res.json(getAllOrders);
-            } else if (myPayload.role == "costumer") {
-                const getOneOrder = await Order.getOneOrder();
-                res.json(getOneOrder);
-            }
-
-
+            const myOrder = await Order.create(req.body, myPayload.userID);
+            res.json(myOrder);
         } catch (error) {
             res.status(403);
         }
-        const myOrder = await Order.create(req.body);
-
         if (!myOrder) {
             res.json({ message: "Order not found" });
         } else {
