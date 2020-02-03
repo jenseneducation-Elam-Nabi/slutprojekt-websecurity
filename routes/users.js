@@ -18,12 +18,11 @@ router.post("/api/register", async (req, res) => {
 
 router.post("/api/auth", async (req, res) => {
     const token = await myUser.userLogin(req.body);
-    const verify = jwt.verify(token, mysecret);
-    if (verify) {
-        res.json(verify);
-        console.log(verify);
+    if (token) {
+        res.status(201).json(token);
+        console.log(token);
     } else {
-        res.send("You are not authorized");
+        res.status(401).json({ error: "You are not authorized" });
     }
 });
 

@@ -1,2 +1,3 @@
 {"email":"klara@.nu","password":"$2a$10$DTEU1iKLT0dt301QsjglaezaF8x8ihBZqO0umTz0NL9s419Fj8qBG","role":"costumer","name":"klara","adress":{"street":"Shitvägen ","zip":"123 421","city":"Cyberlandet"},"_id":"wqc6sKIQV0iJQ2fl"}
+{"email":"chupa@chupa.nu","password":"$2a$10$gy8orpEHsQrSRhyL0AA2xeqdCLXEk8BFNlf7vGpoa3Yr9feDi9W5O","role":"costumer","name":"chupa","adress":{"street":"adad","zip":"32234","city":"sotksf"},"_id":"zZ4fjdIaHpVcuvPF"}
 {"email":"elam@nabi.nu","password":"$2a$10$8zYTe1lLLjmOPkojG9eeM.JFVzhZXBpW8CwsiMTn3W1vvF4MCluCC","role":"admin","name":"elam","adress":{"street":"måsvägen 123","zip":"123 44","city":"cybercity"},"_id":"zhB96xYKIi2eSy0y"}
