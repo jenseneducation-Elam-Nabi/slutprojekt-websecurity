@@ -14,34 +14,34 @@ router.get("/api/products/:id", async (req, res) => {
     if (product) {
         res.json(product);
     } else {
-        res.json({ message: "Couldn't find post" });
+        res.json({ message: "Couldn't find product" });
     }
 });
 
 router.post("/api/products", async (req, res) => {
-    const post = await Product.create(req.body);
-    if (!post) {
-        res.json({ message: "Couldn't create post" });
+    const product = await Product.create(req.body);
+    if (!product) {
+        res.json({ message: "Couldn't create product" });
     } else {
-        res.json(post);
+        res.json(product);
     }
 });
 
 router.patch("/api/products/:id", async (req, res) => {
-    let post = await Product.update(req.params.id, req.body);
-    if (!post) {
+    let product = await Product.update(req.params.id, req.body);
+    if (!product) {
         res.json({ message: "Couldn't update post" });
     } else {
-        res.json(post);
+        res.json(product);
     }
 });
 
 router.delete("/api/products/:id", async (req, res) => {
-    const post = await Product.remove(req.params.id);
-    if (!post) {
+    const product = await Product.remove(req.params.id);
+    if (!product) {
         res.json({ message: "Product removed" });
     } else {
-        res.json(post);
+        res.json(product);
     }
 });
 module.exports = router;

@@ -36,7 +36,8 @@ module.exports = {
                         street: body.adress.street,
                         zip: body.adress.zip,
                         city: body.adress.city
-                    }
+                    },
+                    orderHistory: []
                 };
 
                 // insert object "newUser" into db using db-name.insert(myNewUser)
