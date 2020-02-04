@@ -4,7 +4,7 @@ const myUser = require("../models/myuser");
 
 require('dotenv').config();
 
-
+// REGISTER ONE USER
 router.post("/api/register", async (req, res) => {
     const user = await myUser.newRegister(req.body)
     if (user) {
@@ -14,6 +14,7 @@ router.post("/api/register", async (req, res) => {
     }
 });
 
+// AUTHENTICATE THE USER
 router.post("/api/auth", async (req, res) => {
     const token = await myUser.userLogin(req.body);
     if (token) {

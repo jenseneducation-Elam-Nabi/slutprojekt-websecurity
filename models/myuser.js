@@ -1,10 +1,11 @@
 const DataStore = require("nedb-promise");
 const users = new DataStore({ filename: "./db/users.db", autoload: true })
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs"); // To be able to HASH passwords
+const jwt = require("jsonwebtoken"); // use jsonwebtoken to verify the user that is logged!
 
 
-
+/* to be able to use .env file and store secret data,
+you will have to require the dotenv packge.*/
 require('dotenv').config();
 
 
@@ -37,6 +38,7 @@ module.exports = {
                         zip: body.adress.zip,
                         city: body.adress.city
                     },
+                    //where the orderhistory will be put, an empty array.
                     orderHistory: []
                 };
 
@@ -84,7 +86,8 @@ module.exports = {
                             street: user.adress.street,
                             city: user.adress.city,
                             zip: user.adress.zip
-                        }
+                        },
+                        orderHistory: user.orderHistory
                     }
                 };
             } else {
@@ -92,5 +95,11 @@ module.exports = {
                 return false;
             }
         }
+    },
+    async myPayment(userID, payment) {
+        await users.update({ _id: userID }, { $set: { payment: payment } });
+    },
+    async myOrder(userID, orderID) {
+        await users.update({ _id: userID }, { $push: { orderHistory: orderID } });
     }
 };

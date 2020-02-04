@@ -1,13 +1,15 @@
 const express = require('express');
+
+//IMPORT 
 const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
 const userRoutes = require("./routes/users");
-
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// EXECUTE
 app.use(express.static('public'))
 app.use("/", productRoutes);
 app.use("/", orderRoutes);

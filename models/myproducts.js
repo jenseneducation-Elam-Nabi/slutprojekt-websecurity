@@ -5,7 +5,7 @@ const products = new DataStore({
     autoload: true
 });
 
-// import product file for inserting to db products.db.
+// import product file for inserting to db products.db. JUST RUN ONCE OR YOUR PRODUCTS.DB WILL BE FULL OF THE SAME ITEMS.
 
 // const productsObject = require('../products.json')
 // products.insert(productsObject)
