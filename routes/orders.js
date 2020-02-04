@@ -26,7 +26,7 @@ router.get("/api/orders", async (req, res) => {
                 const getAllOrders = await Order.getMyOrders();
                 res.json(getAllOrders);
             } else if (myPayload.role == "costumer") {
-                const getOneOrder = await Order.getOneOrder();
+                const getOneOrder = await Order.getOneOrder(user.userID);
                 res.json(getOneOrder);
             }
 

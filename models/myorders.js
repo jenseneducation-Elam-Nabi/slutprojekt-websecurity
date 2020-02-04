@@ -11,7 +11,7 @@ module.exports = {
 
     // find one order in DB
     async getOneOrder(userID) {
-        return await orders.findOne({ owner: userID });
+        return await orders.find({ owner: userID });
     },
 
     // create new order
