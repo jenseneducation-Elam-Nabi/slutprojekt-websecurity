@@ -22,7 +22,7 @@ module.exports = {
             timeStamp: Date.now(),
             status: "inProcess",
             items: body.items,
-            orderValue: body.orderValue,
+            orderValue: body.orderValue
         };
         // insert new order in db.
         const myNewOrder = await orders.insert(newOrder);
