@@ -39,7 +39,8 @@ module.exports = {
                         city: body.adress.city
                     },
                     //where the orderhistory will be put, an empty array.
-                    orderHistory: []
+                    orderHistory: [],
+                    orderValue: []
                 };
 
                 // insert object "newUser" into db using db-name.insert(myNewUser)
@@ -87,7 +88,8 @@ module.exports = {
                             city: user.adress.city,
                             zip: user.adress.zip
                         },
-                        orderHistory: user.orderHistory
+                        orderHistory: user.orderHistory,
+                        orderValue: user.orderValue
                     }
                 };
             } else {

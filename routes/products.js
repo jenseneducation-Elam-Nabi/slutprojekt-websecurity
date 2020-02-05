@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/myproducts");
+const auth = require("./auth");
 
 
 // GET ALL PRODUCTS
-router.get("/api/products", async (req, res) => {
+router.get("/", async (req, res) => {
     const product = await Product.all();
     res.json(product);
 });
 
-// GET ONE PRODUCT WITH THE HELP OF ID 
-router.get("/api/products/:id", async (req, res) => {
-    const product = await Product.create(req.params.id);
+// GET ONE PRODUCT
+router.get("/:id", async (req, res) => {
+    const product = await Product.getOne(req.params.id);
     if (product) {
         res.json(product);
     } else {
@@ -20,7 +21,7 @@ router.get("/api/products/:id", async (req, res) => {
 });
 
 // CREATE A PRODUCT
-router.post("/api/products", async (req, res) => {
+router.post("/:id", auth.auth, async (req, res) => {
     const product = await Product.create(req.body);
     if (!product) {
         res.json({ message: "Couldn't create product" });
@@ -29,8 +30,8 @@ router.post("/api/products", async (req, res) => {
     }
 });
 
-// UPDATE ONE PRODUCT WITH THE HELP OF ID
-router.patch("/api/products/:id", async (req, res) => {
+// UPDATE ONE PRODUCT 
+router.patch("/:id", auth.auth, async (req, res) => {
     let product = await Product.update(req.params.id, req.body);
     if (!product) {
         res.json({ message: "Couldn't update post" });
@@ -39,8 +40,8 @@ router.patch("/api/products/:id", async (req, res) => {
     }
 });
 
-// DELETE ON PRODUCT WITH THE HELP OF ID
-router.delete("/api/products/:id", async (req, res) => {
+// DELETE ON PRODUCT
+router.delete("/:id", auth.auth, async (req, res) => {
     const product = await Product.remove(req.params.id);
     if (!product) {
         res.json({ message: "Product removed" });

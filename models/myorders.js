@@ -17,12 +17,15 @@ module.exports = {
     // create new order
     async create(body, userID) {
         // new order object
+
+
+
         const newOrder = {
             owner: userID,
             timeStamp: Date.now(),
             status: "inProcess",
             items: body.items,
-            orderValue: body.orderValue
+            orderValue: price
         };
         // insert new order in db.
         const myNewOrder = await orders.insert(newOrder);
@@ -34,7 +37,8 @@ module.exports = {
             _id: userID
         }, {
             $push: {
-                orderHistory: myNewOrder._id
+                orderHistory: myNewOrder._id,
+                orderValue: myNewOrder.price
             }
         });
     }
