@@ -7,9 +7,10 @@ const userRoutes = require("./routes/users");
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // EXECUTE
-app.use(express.static('public'));
+app.use(express.static('public'))
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/", userRoutes);
