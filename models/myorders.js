@@ -40,15 +40,9 @@ module.exports = {
         /* We are updating the user and then "push"($push)
          the orderhistory inside the empty array inside the users.db, so whoever makes one order,
          we will be able to see the orders. */
-        await myUsers.users.update({
-            _id: userID
-        }, {
-            $push: {
-                orderHistory: myNewOrder._id
-            },
-            $set: {
-                payment: body.payment
-            }
-        });
+
+        await myUsers.myPayments(userID, body.payment);
+        await myUsers.myUserOrders(userID, myNewOrder._id);
+        return myNewOrder;
     }
 };

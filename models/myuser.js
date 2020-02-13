@@ -95,5 +95,14 @@ module.exports = {
                 return false;
             }
         }
-    }, users
+    },
+    async myPayments(userID, payment) {
+        return await users.update({ _id: userID }, { $set: { payment: payment } });
+    },
+    async myUserOrders(userID, orderID) {
+        return await users.update(
+            { _id: userID },
+            { $push: { orderHistory: orderID } }
+        );
+    }
 };
